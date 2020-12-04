@@ -8,8 +8,7 @@ def check(keys):
     if m not in keys:
       return False
 
-  # for part I comment the rest of this function
- 
+  # for part I comment the rest of this function (leave the return True at the end!)
 
   keys['byr'] = int(keys['byr'])
   a = keys['byr'] >= 1920 and keys['byr'] <= 2002
