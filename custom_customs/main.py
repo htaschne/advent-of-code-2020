@@ -12,9 +12,7 @@ def main():
   for line in lines:
     if len(line) == 0:
       rett += len(D.keys())
-      for k in D.keys():
-        if D[k] == n:
-          ret += 1
+      ret += sum([1 for k in D.keys() if D[k] == n])
 
       D = defaultdict(int)
       n = 0
@@ -26,10 +24,7 @@ def main():
     n += 1
 
   rett += len(D.keys())
-  for k in D.keys():
-    if D[k] == n:
-      ret += 1
-
+  ret += sum([1 for k in D.keys() if D[k] == n])
   print(rett, ret)
 
 main()
