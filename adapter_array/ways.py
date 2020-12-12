@@ -3,7 +3,6 @@ import sys
 chains = {}
 def run(adapter, bag, mx):
     global chains
-
     if adapter in chains:
         return chains[adapter]
     if adapter == mx:
