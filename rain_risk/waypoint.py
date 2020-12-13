@@ -1,21 +1,13 @@
 import sys
 
-def rot(dd, x, y):
-  if dd == 'L':
-    return -y, x
-  else:
-    return y, -x
+def rot90(direction, p):
+  return (-p[1], p[0]) if direction == 'L' else (p[1], -p[0])
 
-def rotate(dd, amount, x, y):
-  if amount == 90:
-    return rot(dd, x, y)
-  elif amount == 180:
-    x, y = rot(dd, x, y)
-    return rot(dd, x, y)
-  elif amount == 270:
-    x, y = rot(dd, x, y)
-    x, y = rot(dd, x, y)
-    return rot(dd, x, y)
+def rotate(direction, amount, x, y):
+  times = amount // 90 # garanteed to be integer
+  for time in range(times):
+    x, y = rot90(direction, (x, y))
+  return x, y
 
 def main():
   x, y = 0, 0
