@@ -4,23 +4,21 @@ from collections import defaultdict
 
 nums = list(map(int, open(sys.argv[1]).readline().split(',')))
 
-counter = defaultdict(int)
-lasts = defaultdict(list)
-spoken = []
 last = 0
+lasts = defaultdict(list)
 for i in range(30000000):
   if i < len(nums):
     last = nums[i]
 
-  elif counter[last] == 1:
+  elif len(lasts[last]) == 1:
     last = 0
 
-  elif counter[last] > 1:
-    # print(i, lasts[last], last)
+  elif len(lasts[last]) > 1:
     last = lasts[last][-1] - lasts[last][-2]
 
-  spoken.append(last)
   lasts[last].append(i+1)
-  counter[last] += 1
 
-print(spoken[-1])
+  if i == 2019:
+    print(last)
+
+print(last)
