@@ -1,0 +1,59 @@
+
+import sys
+
+from typing import List
+from collections import deque
+
+def find_element(current, element, pos):
+  aim = element - 1
+  new_pos = 0
+  while aim > 1:
+    if aim in current:
+      new_pos = current.index(aim)
+      break
+    aim -= 1
+  # print(aim)
+
+  if aim == 1 and new_pos == 0:
+    new_pos = current.index(max(current))
+
+  return new_pos
+
+def splice(current, pos, middle):
+  current = deque(current)
+  # print(current, pos, middle)
+  print(current)
+  a, b = [], []
+  p = 0
+  while p != pos:
+    a.append(current.popleft())
+    p += 1
+  b = list(current)
+  return a, b
+
+def step(cups: List[int], pos: int) -> (List[int], int):
+  # unplug
+  hold = cups[pos+1:pos+4]
+  current = [cups[pos]] + cups[pos+4:]
+  # print(hold, current, cups[pos], current.index(cups[pos]))
+
+  # find the destination position
+  pos = find_element(current, cups[pos], pos)
+  current, split = splice(current, pos + 1, hold)
+  # current, split = current[:pos+1], current[pos+1:]
+  print(current, split)
+  exit(0)
+
+  # plug
+  hold = current + hold + split
+  print(hold)
+  return hold, pos
+
+cups = list(map(int, list(open(sys.argv[1]).readline().rstrip())))
+
+pos = 0
+for _ in range(2):
+  # print(cups, pos)
+  cups, pos = step(cups, pos)
+  print()
+
