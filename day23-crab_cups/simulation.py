@@ -78,9 +78,6 @@ def split(cups, pos):
     b.append(cups.popleft())
     n += 1
 
-  # while len(cups) == 0 and n != 3:
-  #   b.append(a.pop(0))
-  #   n += 1
   while len(b) != 3:
     b.append(a.pop(0))
 
